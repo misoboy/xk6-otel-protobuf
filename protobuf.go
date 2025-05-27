@@ -11,28 +11,14 @@ func init() {
 
 type OtelModule struct{}
 
-func (m *OtelModule) NewModuleInstance(vu modules.VU) modules.Instance {
-	return &OtelInstance{vu: vu}
-}
-
-type OtelInstance struct {
-	vu modules.VU
-}
-
-func (oi *OtelInstance) Exports() modules.Exports {
-	return modules.Exports{
-		Default: oi,
-	}
-}
-
-func (oi *OtelInstance) EncodeMetric(jsonStr string) ([]byte, error) {
+func (oi *OtelModule) EncodeMetric(jsonStr string) ([]byte, error) {
 	return encoder.EncodeMetricFromJSON(jsonStr)
 }
 
-func (oi *OtelInstance) EncodeTrace(jsonStr string) ([]byte, error) {
+func (oi *OtelModule) EncodeTrace(jsonStr string) ([]byte, error) {
 	return encoder.EncodeTraceFromJSON(jsonStr)
 }
 
-func (oi *OtelInstance) EncodeLog(jsonStr string) ([]byte, error) {
+func (oi *OtelModule) EncodeLog(jsonStr string) ([]byte, error) {
 	return encoder.EncodeLogFromJSON(jsonStr)
 }
