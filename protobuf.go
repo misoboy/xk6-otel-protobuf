@@ -1,4 +1,4 @@
-package main
+package protobuf
 
 import (
 	"github.com/misoboy/xk6-otel-protobuf/otel/encoder"
