@@ -1,7 +1,6 @@
 package protobuf
 
 import (
-	"github.com/misoboy/xk6-otel-protobuf/otel/encoder"
 	"go.k6.io/k6/js/modules"
 )
 
@@ -12,13 +11,13 @@ func init() {
 type OtelModule struct{}
 
 func (oi *OtelModule) EncodeMetric(jsonStr string) ([]byte, error) {
-	return encoder.EncodeMetricFromJSON(jsonStr)
+	return EncodeMetricFromJSON(jsonStr)
 }
 
 func (oi *OtelModule) EncodeTrace(jsonStr string) ([]byte, error) {
-	return encoder.EncodeTraceFromJSON(jsonStr)
+	return EncodeTraceFromJSON(jsonStr)
 }
 
 func (oi *OtelModule) EncodeLog(jsonStr string) ([]byte, error) {
-	return encoder.EncodeLogFromJSON(jsonStr)
+	return EncodeLogFromJSON(jsonStr)
 }
