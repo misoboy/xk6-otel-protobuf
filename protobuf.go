@@ -2,6 +2,7 @@ package protobuf
 
 import (
 	"encoding/json"
+	"fmt"
 	"go.k6.io/k6/js/modules"
 	"google.golang.org/protobuf/proto"
 
@@ -30,6 +31,7 @@ func (oi *Protobuf) EncodeLog(jsonStr string) ([]byte, error) {
 
 // Metric JSON → protobuf
 func encodeMetricFromJSON(jsonStr string) ([]byte, error) {
+	fmt.Println("encodeMetricFromJSON input JSON:", jsonStr[:100]) // 앞 100자만 출력
 	var req colmetricspb.ExportMetricsServiceRequest
 	err := json.Unmarshal([]byte(jsonStr), &req)
 	if err != nil {
