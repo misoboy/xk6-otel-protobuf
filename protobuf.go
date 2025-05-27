@@ -2,7 +2,6 @@ package protobuf
 
 import (
 	"encoding/json"
-	"fmt"
 	"go.k6.io/k6/js/modules"
 	"google.golang.org/protobuf/proto"
 
@@ -10,6 +9,10 @@ import (
 	colmetricspb "go.opentelemetry.io/proto/otlp/collector/metrics/v1"
 	coltracepb "go.opentelemetry.io/proto/otlp/collector/trace/v1"
 )
+
+message CountryList {
+  repeated Country countries = 1;
+}
 
 func init() {
 	modules.Register("k6/x/protobuf", new(Protobuf))
@@ -31,7 +34,6 @@ func (oi *Protobuf) EncodeLog(jsonStr string) ([]byte, error) {
 
 // Metric JSON → protobuf
 func encodeMetricFromJSON(jsonStr string) ([]byte, error) {
-	fmt.Println("encodeMetricFromJSON input JSON:", jsonStr[:100]) // 앞 100자만 출력
 	var req colmetricspb.ExportMetricsServiceRequest
 	err := json.Unmarshal([]byte(jsonStr), &req)
 	if err != nil {
